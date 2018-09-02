@@ -1,5 +1,4 @@
 import * as Ajv from 'ajv';
-import * as betterAjvErrors from 'better-ajv-errors';
 import * as handlebars from 'handlebars';
 import * as jsonlint from 'jsonlint';
 import * as uuid from 'uuid';
