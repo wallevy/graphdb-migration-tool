@@ -3,14 +3,15 @@
   "version": "0.0.1",
   "description": "graphdb-migration-tool",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/abbasc52/graphdb-migration-tool",
   "author": {
     "name": "Abbas Cyclewala",
     "email": "abbasc52@gmail.com",
-    "url": "https://github.com/abbasc52/graphdb-migration-tool"
+    "url": "https://github.com/abbasc52"
   },
   "keywords": [
-    "graph-database","migration-tool"
+    "graph-database",
+    "migration-tool"
   ],
   "files": [
     "lib"
