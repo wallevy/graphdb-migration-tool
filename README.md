@@ -12,7 +12,7 @@ Conversions supported:
 - sql to graph
 
 ## Installation (CLI)
-> npm -g graphdb-migration-tool
+> npm i -g graphdb-migration-tool
 
 ## Usage (CLI)
     Usage: graphdb-migration-tool [options] [command]
@@ -27,6 +27,18 @@ Conversions supported:
       jsontogremlin <inputFile> <templateFile> <outputFile>
       jsontograph <inputFile> <templateFile> <graphConfigFile>
       sqltograph <sqlConfigFile> <query> <templateFile> <graphConfigFile>
+
+## Installation (Lib)
+> npm i --save graphdb-migration-tool
+
+## Usage (Lib)
+```js
+  var graphtool = require('graphdb-migration-tool');
+  var result = graphtool.jsonToGraph(json,template);
+
+   //or ES6
+  import {jsonToGraph} from 'graphdb-migration-tool';
+```
 
 ### SQL Config File
 ```json5
