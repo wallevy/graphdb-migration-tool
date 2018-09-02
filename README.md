@@ -12,10 +12,10 @@ Conversions supported:
 - sql to graph
 
 ## Installation (CLI)
-> npm -g graph-migration-tool
+> npm -g graphdb-migration-tool
 
 ## Usage (CLI)
-    Usage: graph-migration-tool [options] [command]
+    Usage: graphdb-migration-tool [options] [command]
 
     Options:
 
@@ -28,8 +28,9 @@ Conversions supported:
       jsontograph <inputFile> <templateFile> <graphConfigFile>
       sqltograph <sqlConfigFile> <query> <templateFile> <graphConfigFile>
 
+
 ### SQL Config File
-```json
+```json5
 {
   "dialect":"mssql",  //dialect to use, 'mysql'|'sqlite'|'postgres'|'mssql'
   "username": "test",
