@@ -3,7 +3,6 @@
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 # graph-migration-tool
-
 This tool allows you to migrate existing database to a graph database
 
 Conversions supported:
