@@ -28,7 +28,6 @@ Conversions supported:
       jsontograph <inputFile> <templateFile> <graphConfigFile>
       sqltograph <sqlConfigFile> <query> <templateFile> <graphConfigFile>
 
-
 ### SQL Config File
 ```json5
 {
