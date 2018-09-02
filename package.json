@@ -1,16 +1,16 @@
 {
-  "name": "graph-migration-tool",
-  "version": "0.1.0",
-  "description": "graph-migration-tool",
+  "name": "graphdb-migration-tool",
+  "version": "0.0.1",
+  "description": "graphdb-migration-tool",
   "license": "MIT",
   "repository": "",
   "author": {
     "name": "Abbas Cyclewala",
-    "email": "abcy@microsoft.com",
-    "url": "http://localhost"
+    "email": "abbasc52@gmail.com",
+    "url": "https://github.com/abbasc52/graphdb-migration-tool"
   },
   "keywords": [
-    ""
+    "graph-database","migration-tool"
   ],
   "files": [
     "lib"
