@@ -10,6 +10,9 @@
     "url": "https://github.com/abbasc52"
   },
   "keywords": [
+    "graph",
+    "database",
+    "migration",
     "graph-database",
     "migration-tool"
   ],
