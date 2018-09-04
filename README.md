@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/abbasc52/graphdb-migration-tool.svg?branch=master)](https://travis-ci.org/abbasc52/graphdb-migration-tool.svg?branch=master)
+[![Build Status](https://travis-ci.com/abbasc52/graphdb-migration-tool.svg?branch=master)](https://travis-ci.com/abbasc52/graphdb-migration-tool)
 [![Coverage Status](https://coveralls.io/repos/github/abbasc52/graphdb-migration-tool/badge.svg?branch=master)](https://coveralls.io/github/abbasc52/graphdb-migration-tool?branch=master)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
