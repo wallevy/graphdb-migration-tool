@@ -33,16 +33,16 @@ export function getEdgeQuery(edgeObj: Edge): string {
 export function removeDuplicateVertexes(vertexes: Vertex[]) {
   const seen: { [key: string]: boolean } = {};
   return vertexes.filter(vertex => {
-    return seen.hasOwnProperty(vertex.properties.id)
-      ? false
-      : (seen[vertex.properties.id] = true);
+    const vertexId = vertex.properties.id;
+    return seen.hasOwnProperty(vertexId) ? false : (seen[vertexId] = true);
   });
 }
 
 export function removeDuplicateEdges(edges: Edge[]) {
   const seen: { [key: string]: boolean } = {};
   return edges.filter(edge => {
-    const edgeId = `${edge.label}-${edge.from}-${edge.to}`;
+    const id = edge.properties && edge.properties.id ? edge.properties.id : '';
+    const edgeId = `${edge.label}-${id}-${edge.from}-${edge.to}`;
     return seen.hasOwnProperty(edgeId) ? false : (seen[edgeId] = true);
   });
 }
