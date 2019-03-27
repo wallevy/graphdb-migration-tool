@@ -32,11 +32,14 @@ export function sqlToGraph(
   async.waterfall(
     [
       (cb: any) => {
+        console.log('Start querying from database');
         sqlConnector.queryDatabase(query, cb);
       },
       (rowCount: number, rows: any[], cb: any) => {
+        console.log('Start transforming');
         const transformer = new Transformer({});
         const result = transformer.transformJSON(template, rows, graphSchema);
+        console.log('Start migrating');
         graphConnector.createGraph(result, cb);
       },
     ],
