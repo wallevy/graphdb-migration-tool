@@ -1,5 +1,4 @@
-import * as async from 'async';
-import * as Sequelize from 'sequelize';
+import * as Sequelize from "sequelize";
 
 export class SQLConnnector {
   private connection: Sequelize.Sequelize;

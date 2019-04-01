@@ -1,10 +1,9 @@
-import * as Ajv from 'ajv';
-import * as handlebars from 'handlebars';
-import * as jsonlint from 'jsonlint';
-import * as uuid from 'uuid';
-import * as GraphHelper from '../gremlin-helpers/graphHelper';
-import { Edge, GraphInfo, Vertex } from '../models/graph-model';
-import { ajvErrorLint } from '../utils/ajvErrorLint';
+import * as Ajv from "ajv";
+import * as handlebars from "handlebars";
+import * as jsonlint from "jsonlint";
+import * as uuid from "uuid";
+import { GraphInfo } from "../models/graph-model";
+import { ajvErrorLint } from "../utils/ajvErrorLint";
 
 export class Transformer {
   private validator: Ajv.Ajv;
@@ -21,26 +20,15 @@ export class Transformer {
 
   public transformJSON(
     template: string,
-    jsonArray: object[],
+    doc: object,
     validationSchema?: object
   ): GraphInfo {
-    let vertices: Vertex[] = [];
-    let edges: Edge[] = [];
-
-    jsonArray.forEach(doc => {
-      const transformedDoc = this.parseTemplate(template, doc);
-      const result: GraphInfo = jsonlint.parse(transformedDoc);
-      if (validationSchema) {
-        this.validateJSON(result, validationSchema);
-      }
-
-      vertices = vertices.concat(result.vertices);
-      edges = edges.concat(result.edges);
-    });
-
-    vertices = GraphHelper.removeDuplicateVertexes(vertices);
-    edges = GraphHelper.removeDuplicateEdges(edges);
-    return { vertices, edges };
+    const transformedDoc = this.parseTemplate(template, doc);
+    const result: GraphInfo = jsonlint.parse(transformedDoc);
+    if (validationSchema) {
+      this.validateJSON(result, validationSchema);
+    }
+    return result;
   }
 
   public validateJSON(json: any, schema: object) {
@@ -51,12 +39,12 @@ export class Transformer {
         this.validator.errors![0] as Ajv.ErrorObject,
         this.validator.errorsText()
       );
-      throw new Error('Schema validation error: \n' + output);
+      throw new Error("Schema validation error: \n" + output);
     }
     return valid;
   }
 
   private registerHelpers(): void {
-    handlebars.registerHelper('$guid', () => uuid.v4());
+    handlebars.registerHelper("$guid", () => uuid.v4());
   }
 }
