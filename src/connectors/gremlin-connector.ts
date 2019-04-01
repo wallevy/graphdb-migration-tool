@@ -1,9 +1,7 @@
-import * as async from 'async';
-import * as convertHrtime from 'convert-hrtime';
-import * as Gremlin from 'gremlin';
-import { stdout as log } from 'single-line-log';
-import * as GraphHelper from '../gremlin-helpers/graphHelper';
-import { Edge, GraphInfo, Vertex } from '../models/graph-model';
+import * as async from "async";
+import * as Gremlin from "gremlin";
+import * as GraphHelper from "../gremlin-helpers/graphHelper";
+import { Edge, GraphInfo, Vertex } from "../models/graph-model";
 
 export class GremlinConnector {
   private client: Gremlin.GremlinClient;
@@ -15,7 +13,7 @@ export class GremlinConnector {
       password: config.password,
       session: false,
       ssl: true,
-      user: config.user,
+      user: config.user
     });
     this.batchSize = config.batchSize
       ? config.batchSize
@@ -30,66 +28,51 @@ export class GremlinConnector {
         },
         (cb: any) => {
           this.addEdges(graphInfo.edges, cb);
-        },
-      ],
-      err => callback(err)
-    );
+        }
+      ], err => {
+        if (err) {
+          callback(err);
+        }
+        else {
+          callback();
+        }
+      });
   }
 
   public addVertices(vertices: Vertex[], callback: any) {
-    const timer = process.hrtime();
     async.eachOfLimit(
       vertices,
       this.batchSize,
       (value, key, cb) => {
         const command = GraphHelper.getVertexQuery(value);
-        this.client.execute(command, (err, res) => {
-          if (!err) {
-            log(`Added vertices: ${(key as number) + 1}/${vertices.length}`);
-          }
-          cb(err as any);
-        });
+        this.client.execute(command, (err) => cb(err as any));
       },
       err => {
         if (err) {
           callback(err);
-        } else {
-          console.log('\nFinished adding vertices');
-          const timeTaken = convertHrtime(process.hrtime(timer)).seconds;
-          console.log(
-            `Added ${vertices.length} vertices in ${timeTaken} seconds`
-          );
+        }
+        else {
           callback();
         }
-      }
-    );
+      });
   }
 
   public addEdges(edges: Edge[], callback: any) {
-    const timer = process.hrtime();
     async.eachOfLimit(
       edges,
       this.batchSize,
       (value, key, cb) => {
         const command = GraphHelper.getEdgeQuery(value);
-        this.client.execute(command, (err, res) => {
-          if (!err) {
-            log(`Adding edges: ${(key as number) + 1}/${edges.length}`);
-          }
-          cb(err as any);
-        });
+        this.client.execute(command, (err) => cb(err as any));
       },
       err => {
         if (err) {
           callback(err);
-        } else {
-          console.log('\nFinished adding edges');
-          const timeTaken = convertHrtime(process.hrtime(timer)).seconds;
-          console.log(`Added ${edges.length} edges in ${timeTaken} seconds`);
+        }
+        else {
           callback();
         }
-      }
-    );
+      });
   }
 
   public closeConnection() {
