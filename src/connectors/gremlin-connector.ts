@@ -1,7 +1,7 @@
-import * as async from "async";
-import * as Gremlin from "gremlin";
-import * as GraphHelper from "../gremlin-helpers/graphHelper";
-import { Edge, GraphInfo, Vertex } from "../models/graph-model";
+import * as async from 'async';
+import * as Gremlin from 'gremlin';
+import * as GraphHelper from '../gremlin-helpers/graphHelper';
+import { Edge, GraphInfo, Vertex } from '../models/graph-model';
 
 export class GremlinConnector {
   private client: Gremlin.GremlinClient;
@@ -13,7 +13,7 @@ export class GremlinConnector {
       password: config.password,
       session: false,
       ssl: true,
-      user: config.user
+      user: config.user,
     });
     this.batchSize = config.batchSize
       ? config.batchSize
@@ -28,15 +28,16 @@ export class GremlinConnector {
         },
         (cb: any) => {
           this.addEdges(graphInfo.edges, cb);
-        }
-      ], err => {
+        },
+      ],
+      err => {
         if (err) {
           callback(err);
-        }
-        else {
+        } else {
           callback();
         }
-      });
+      }
+    );
   }
 
   public addVertices(vertices: Vertex[], callback: any) {
@@ -45,16 +46,16 @@ export class GremlinConnector {
       this.batchSize,
       (value, key, cb) => {
         const command = GraphHelper.getVertexQuery(value);
-        this.client.execute(command, (err) => cb(err as any));
+        this.client.execute(command, err => cb(err as any));
       },
       err => {
         if (err) {
           callback(err);
-        }
-        else {
+        } else {
           callback();
         }
-      });
+      }
+    );
   }
 
   public addEdges(edges: Edge[], callback: any) {
@@ -63,16 +64,16 @@ export class GremlinConnector {
       this.batchSize,
       (value, key, cb) => {
         const command = GraphHelper.getEdgeQuery(value);
-        this.client.execute(command, (err) => cb(err as any));
+        this.client.execute(command, err => cb(err as any));
       },
       err => {
         if (err) {
           callback(err);
-        }
-        else {
+        } else {
           callback();
         }
-      });
+      }
+    );
   }
 
   public closeConnection() {

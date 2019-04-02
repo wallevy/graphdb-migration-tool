@@ -1,9 +1,9 @@
 {
-  "name": "graphdb-migration-tool",
+  "name": "graphdb-migration-tool-ex",
   "version": "0.0.2",
   "description": "graphdb-migration-tool",
   "license": "MIT",
-  "repository": "https://github.com/abbasc52/graphdb-migration-tool",
+  "repository": "https://github.com/wallevy/graphdb-migration-tool",
   "author": {
     "name": "Abbas Cyclewala",
     "email": "abbasc52@gmail.com",
